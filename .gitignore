@@ -1,0 +1,5 @@
+distributed_server/obj/*.o
+distributed_server/obj/*.o
+distributed_server/bin/*
+!distributed_server/bin/.gitkeep
+central_server/__pycache__
