@@ -30,5 +30,5 @@ int read_device(int device) {
 }
 
 void toggle_device(int device, int status) {
-    bcm2835_i2c_write(device, status);
+    bcm2835_gpio_write(device, status);
 }

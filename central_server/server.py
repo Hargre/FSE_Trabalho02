@@ -3,13 +3,10 @@ import socket
 HOST = ''
 PORT = 10003
 
-def client():
+def send_message(message, need_anwser=False):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-        sock.connect(('127.0.0.1', 10103))
-        for i in range(5):
-            sock.sendall(b'hi %d' % i)
+        sock.connect(('192.168.0.52', 10103))
+        sock.sendall(bytes([message]))
+        if need_anwser:
             data = sock.recv(1024).decode("utf-8")
             print(data.split(','))
-
-
-

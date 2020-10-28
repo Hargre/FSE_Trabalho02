@@ -6,13 +6,11 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
+#include <gpio.h>
 
 
 #include "server.h"
 #include "state.h"
-
-#include <json-c/json.h>
-#include <json-c/json_types.h>
 
 void *run_server(void *state) {
     int serverSocket;
@@ -46,19 +44,27 @@ void handle_request(int serverSocket, struct HouseState *state) {
 
     clientLen = sizeof(clientAddr);
     clientSocket = accept(serverSocket, (struct sockaddr *)&clientAddr, &clientLen);
-    printf("%d\n", clientSocket);
-    char buff[16];
+    char buff[4];
     int receivedLen;
 
-    receivedLen = recv(clientSocket, buff, 16, 0);
+    receivedLen = recv(clientSocket, buff, 4, 0);
+
+    printf("%d\n", buff);
 
     while (receivedLen > 0) {
-        const char *json_state = send_state(state);
-        printf("%s %lu\n", json_state, strlen(json_state));
-        send(clientSocket, json_state, strlen(json_state), 0);
-        printf("%s\n", buff);
-        memset(buff, 0, 16);
-        receivedLen = recv(clientSocket, buff, 16, 0);
+        switch ((int)buff) {
+            case TOGGLE_LAMP01:
+                toggle_device(LAMP01, 1);
+                break;
+            default:
+                break;
+        }
+        // const char *json_state = send_state(state);
+        // printf("%s %lu\n", json_state, strlen(json_state));
+        // send(clientSocket, json_state, strlen(json_state), 0);
+        // printf("%s\n", buff);
+        // memset(buff, 0, 16);
+        receivedLen = recv(clientSocket, buff, 4, 0);
     }
     close(clientSocket);
 }
