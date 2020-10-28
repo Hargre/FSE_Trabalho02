@@ -1,5 +1,4 @@
 import socket
-import json
 
 HOST = ''
 PORT = 10003
@@ -9,8 +8,8 @@ def client():
         sock.connect(('127.0.0.1', 10103))
         for i in range(5):
             sock.sendall(b'hi %d' % i)
-            data = json.loads(sock.recv(1024))
-            print(data)
+            data = sock.recv(1024).decode("utf-8")
+            print(data.split(','))
 
 
 

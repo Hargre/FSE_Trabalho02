@@ -1,7 +1,6 @@
 CC = gcc
 LDFLAGS =
-# LDLIBS = -lncursesw -lpthread -lbcm2835 -lwiringPi
-LDLIBS = -lncursesw -lpthread -lbcm2835 -ljson-c
+LDLIBS = -lncursesw -lpthread -lbcm2835 -lwiringPi
 BLDDIR = .
 INCDIR = $(BLDDIR)/inc
 SRCDIR = $(BLDDIR)/src
