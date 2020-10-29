@@ -22,6 +22,6 @@ struct HouseState {
 
 struct HouseState init_state();
 
-const char *send_state(struct HouseState *state);
+const char *state_to_string(struct HouseState *state);
 
 #endif
