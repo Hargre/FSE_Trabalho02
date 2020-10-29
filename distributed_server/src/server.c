@@ -11,6 +11,7 @@
 
 #include "server.h"
 #include "state.h"
+#include "control.h"
 
 void *run_server(void *state) {
     int serverSocket;
@@ -44,26 +45,14 @@ void handle_request(int serverSocket, struct HouseState *state) {
 
     clientLen = sizeof(clientAddr);
     clientSocket = accept(serverSocket, (struct sockaddr *)&clientAddr, &clientLen);
-    char buff[4];
+    char buff[5];
     int receivedLen;
 
-    receivedLen = recv(clientSocket, buff, 4, 0);
+    receivedLen = recv(clientSocket, buff, 5, 0);
 
-    printf("%d\n", buff);
 
     while (receivedLen > 0) {
-        switch ((int)buff) {
-            case TOGGLE_LAMP01:
-                toggle_device(LAMP01, 1);
-                break;
-            default:
-                break;
-        }
-        // const char *json_state = send_state(state);
-        // printf("%s %lu\n", json_state, strlen(json_state));
-        // send(clientSocket, json_state, strlen(json_state), 0);
-        // printf("%s\n", buff);
-        // memset(buff, 0, 16);
+        process_command(buff[0]);
         receivedLen = recv(clientSocket, buff, 4, 0);
     }
     close(clientSocket);

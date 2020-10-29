@@ -1,7 +1,7 @@
-#include "gpio.h"
-
 #include <stdio.h>
 #include <bcm2835.h>
+
+#include "gpio.h"
 
 
 int out_devices[6] = {LAMP01, LAMP02, LAMP03, LAMP04, AIR01, AIR02};
@@ -29,6 +29,7 @@ int read_device(int device) {
     return bcm2835_gpio_lev(device);
 }
 
-void toggle_device(int device, int status) {
-    bcm2835_gpio_write(device, status);
+void toggle_device(int device) {
+    int current = read_device(device);
+    bcm2835_gpio_write(device, !current);
 }
