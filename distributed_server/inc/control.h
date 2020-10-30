@@ -10,5 +10,8 @@
 #define SEND_STATE 20
 
 void process_command(int command);
+void start_polling(struct HouseState *state);
+void *poll_presence_sensors(void *state);
+void *poll_open_sensors(void *state);
 
 #endif
