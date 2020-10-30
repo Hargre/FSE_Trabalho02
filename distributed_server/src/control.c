@@ -1,18 +1,18 @@
 #include "control.h"
 #include "gpio.h"
-#include "state.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
 
 int commands_table[7] = {NULL, LAMP01, LAMP02, LAMP03, LAMP04, AIR01, AIR02};
 
-void process_command(int command) {
+const char* process_command(int command, struct HouseState *state) {
     if (command <= TOGGLE_COMMANDS) {
         toggle_device(commands_table[command]);
     } else if (command == SEND_STATE) {
-        //
+        return state_to_string(state);
     }
+    return NULL;
 }
 
 void start_polling(struct HouseState *state) {

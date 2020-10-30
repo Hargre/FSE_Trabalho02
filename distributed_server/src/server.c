@@ -52,8 +52,12 @@ void handle_request(int serverSocket, struct HouseState *state) {
 
 
     while (receivedLen > 0) {
-        process_command(buff[0]);
+        const char *response = process_command(buff[0], state);
+        if (response != NULL) {
+            send(clientSocket, response, strlen(response), 0);
+        }
         receivedLen = recv(clientSocket, buff, 4, 0);
+        free(response);
     }
     close(clientSocket);
 }
