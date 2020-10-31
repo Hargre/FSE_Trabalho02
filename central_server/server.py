@@ -1,6 +1,8 @@
 import socket
 import curses
 
+from interface import refresh_menu
+
 HOST = ''
 PORT = 10003
 
@@ -10,7 +12,4 @@ def send_message(message, stdscr, need_anwser=False):
         sock.sendall(bytes([message]))
         if need_anwser:
             data = sock.recv(1024).decode("utf-8")
-            stdscr.addstr(0,0,data)
-            stdscr.noutrefresh()
-            curses.doupdate()
-            # print(data.split(','))
+            refresh_menu(data)
