@@ -1,6 +1,7 @@
 #ifndef CONTROL_H
 #define CONTROL_H
 
+#include <pthread.h>
 #include "state.h"
 
 #define TOGGLE_COMMANDS 6
@@ -21,5 +22,7 @@ const char *process_command(int command, struct HouseState *state);
 void start_polling(struct HouseState *state);
 void *poll_presence_sensors(void *state);
 void *poll_open_sensors(void *state);
+void climate_readings_trigger(int sigalarm);
+void *climate_readings(void *state);
 
 #endif

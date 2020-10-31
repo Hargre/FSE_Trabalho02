@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
-#include <pthread.h>
 
 int commands_table[7] = {NULL, LAMP01, LAMP02, LAMP03, LAMP04, AIR01, AIR02};
 
@@ -35,6 +34,8 @@ void start_polling(struct HouseState *state) {
     pthread_create(&presence_polling, NULL, poll_presence_sensors, (void *)state);
     pthread_create(&open_sensors_polling, NULL, poll_open_sensors, (void *)state);
     pthread_create(&climate_readings_loop, NULL, climate_readings, (void *)state);
+
+    alarm(1);
 }
 
 void *poll_presence_sensors(void *state) {
@@ -57,7 +58,7 @@ void climate_readings_trigger(int sigalarm) {
     pthread_mutex_lock(&climate_readings_mutex);
     climate_readings_flag = 1;
     pthread_cond_signal(&climate_readings_cond);
-    pthread_spin_unlock(&climate_readings_mutex);
+    pthread_mutex_unlock(&climate_readings_mutex);
     alarm(1);
 }
 

@@ -39,5 +39,5 @@ void set_device(int device) {
 }
 
 void unset_device(int device) {
-    bcm2835(device, LOW);
+    bcm2835_gpio_write(device, LOW);
 }

@@ -57,7 +57,7 @@ void handle_request(int serverSocket, struct HouseState *state) {
             send(clientSocket, response, strlen(response), 0);
         }
         receivedLen = recv(clientSocket, buff, 4, 0);
-        free(response);
+        free((void *)response);
     }
     close(clientSocket);
 }
