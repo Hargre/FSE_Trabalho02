@@ -61,3 +61,7 @@ void handle_request(int serverSocket, struct HouseState *state) {
     }
     close(clientSocket);
 }
+
+void *send_message() {
+    return NULL;
+}

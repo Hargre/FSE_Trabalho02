@@ -22,8 +22,9 @@ struct HouseState {
 
 struct HouseState init_state();
 
-void get_presence_sensors_state(struct HouseState *state);
-void get_open_sensors_state(struct HouseState *state);
+int get_presence_sensors_state(struct HouseState *state);
+int get_open_sensors_state(struct HouseState *state);
+void get_climate_state(struct HouseState *state);
 
 const char *state_to_string(struct HouseState *state);
 

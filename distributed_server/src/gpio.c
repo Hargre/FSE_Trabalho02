@@ -33,3 +33,11 @@ void toggle_device(int device) {
     int current = read_device(device);
     bcm2835_gpio_write(device, !current);
 }
+
+void set_device(int device) {
+    bcm2835_gpio_write(device, HIGH);
+}
+
+void unset_device(int device) {
+    bcm2835(device, LOW);
+}

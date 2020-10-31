@@ -27,18 +27,24 @@ struct HouseState init_state() {
 }
 
 
-void get_presence_sensors_state(struct HouseState *state) {
-    state->presence01 = read_device(PRESENCE01);
-    state->presence02 = read_device(PRESENCE02);
+void get_climate_state(struct HouseState *state) {
+    get_sensor_data(&(state->temperature), &(state->humidity));
 }
 
-void get_open_sensors_state(struct HouseState *state) {
+int get_presence_sensors_state(struct HouseState *state) {
+    state->presence01 = read_device(PRESENCE01);
+    state->presence02 = read_device(PRESENCE02);
+    return (state->presence01 || state->presence02);
+}
+
+int get_open_sensors_state(struct HouseState *state) {
     state->open01 = read_device(OPEN01);
     state->open02 = read_device(OPEN02);
     state->open03 = read_device(OPEN03);
     state->open04 = read_device(OPEN04);
     state->open05 = read_device(OPEN05);
     state->open06 = read_device(OPEN06);
+    return (state->open01 || state->open02 || state->open03 || state->open04 || state->open05 || state->open06);
 }
 
 const char *state_to_string(struct HouseState *state) {
