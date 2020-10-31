@@ -1,19 +1,36 @@
 from server import send_message
 from control import get_state
 
+import curses
+import locale
 import threading
 
-print("1 - Alterar L01")
-print("2 - Alterar L02")
-print("3 - Alterar L03")
-print("4 - Alterar L04")
-print("0 - Sair")
+locale.setlocale(locale.LC_ALL, '')
+code = locale.getpreferredencoding()
 
-state_updates = threading.Thread(target=get_state)
-state_updates.start()
+def main(stdscr):
+    stdscr.noutrefresh()
+    curses.doupdate()
 
-option = int(input())
+    stdscr.addstr(0, 1,"1 - Alterar L01")
+    stdscr.addstr(0, 2,"2 - Alterar L02")
+    stdscr.addstr(0, 3,"3 - Alterar L03")
+    stdscr.addstr(0, 4,"4 - Alterar L04")
+    stdscr.addstr(0, 5,"0 - Sair")
 
-while option != 0:
-    send_message(option)
-    option = int(input())
+    stdscr.noutrefresh()
+    curses.doupdate()
+
+    state_updates = threading.Thread(target=get_state,args=(stdscr,))
+    state_updates.start()
+
+    option = int(stdscr.getkey())
+
+    while option != 0:
+        send_message(option)
+        option = int(stdscr.getkey())
+    
+    curses.endwin()
+
+if __name__ == '__main__':
+    curses.wrapper(main)

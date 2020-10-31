@@ -1,12 +1,16 @@
 import socket
+import curses
 
 HOST = ''
 PORT = 10003
 
-def send_message(message, need_anwser=False):
+def send_message(message, need_anwser=False, stdscr):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
         sock.connect(('192.168.0.52', 10103))
         sock.sendall(bytes([message]))
         if need_anwser:
             data = sock.recv(1024).decode("utf-8")
-            print(data.split(','))
+            stdscr.addstr(0,0,data.split(','))
+            stdscr.noutrefresh()
+            curses.doupdate()
+            # print(data.split(','))
