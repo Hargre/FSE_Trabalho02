@@ -9,12 +9,15 @@ int commands_table[7] = {NULL, LAMP01, LAMP02, LAMP03, LAMP04, AIR01, AIR02};
 const char* process_command(int command, struct HouseState *state) {
     if (command <= TOGGLE_COMMANDS) {
         toggle_device(commands_table[command]);
+        get_air_lamps_state(state);
     } else if (command == TEMP_CONTROL_ON) {
         set_device(AIR01);
         set_device(AIR02);
+        get_air_lamps_state(state);
     } else if (command == TEMP_CONTROL_OFF) {
         unset_device(AIR01);
         unset_device(AIR02);
+        get_air_lamps_state(state);
     } else if (command == SEND_STATE) {
         return state_to_string(state);
     }

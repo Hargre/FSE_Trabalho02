@@ -18,13 +18,13 @@ class HouseState:
         self.open06 = 0
 
     def __str__(self):
-        return "Temperatura: %.2f Umidade %.2f\n\
-            Lâmpadas:\nCozinha: %d\nSala: %d\nQuarto 01: %d\nQuarto 02: %d\n\
-            Ares-Condicionados:\nQuarto 01: %d\nQuarto 02: %d\n\
-            Presença em Cômodos:\nSala: %d\nCozinha: %d\n\
-            Portas e Janelas Abertas:\n Porta Cozinha: %d\nJanela Cozinha: %d\n\
-            Porta Sala: %d\nJanela Sala: %d\n\
-            Janela Quarto 01: %d\nJanela Quarto 02: %d\n" % (
+        return "Temperatura: %.2f Umidade %.2f\
+            \nLâmpadas:\n\tCozinha: %d\n\tSala: %d\n\tQuarto 01: %d\n\tQuarto 02: %d\
+            \nAres-Condicionados:\n\tQuarto 01: %d\n\tQuarto 02: %d\
+            \nPresença em Cômodos:\n\tSala: %d\n\tCozinha: %d\
+            \nPortas e Janelas Abertas:\n\tPorta Cozinha: %d\n\tJanela Cozinha: %d\
+            \nPorta Sala: %d\n\tJanela Sala: %d\
+            \n\tJanela Quarto 01: %d\n\tJanela Quarto 02: %d\n" % (
                 self.temperature, self.humidity,
                 self.lamp01, self.lamp02, self.lamp03, self.lamp04,
                 self.air01, self.air02,

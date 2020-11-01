@@ -7,8 +7,8 @@ from control import get_state
 
 def main():
 
-    refresh_menu(None)
     state = HouseState()
+    refresh_menu(state)
 
     state_updates = threading.Thread(target=get_state, args=(state,), daemon=True)
     state_updates.start()

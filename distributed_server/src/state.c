@@ -27,6 +27,15 @@ struct HouseState init_state() {
 }
 
 
+void get_air_lamps_state(struct HouseState *state) {
+    state->lamp01 = read_device(LAMP01);
+    state->lamp02 = read_device(LAMP02);
+    state->lamp03 = read_device(LAMP03);
+    state->lamp04 = read_device(LAMP04);
+    state->air01 = read_device(AIR01);
+    state->air02 = read_device(AIR02);
+}
+
 void get_climate_state(struct HouseState *state) {
     get_sensor_data(&(state->temperature), &(state->humidity));
 }
