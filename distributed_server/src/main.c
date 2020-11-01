@@ -5,8 +5,19 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <signal.h>
+
+void cleanup() {
+    close_gpio();
+}
+
+void handle_sigint(int signum) {
+    cleanup();
+    exit(0);
+}
 
 int main() {
+    signal(SIGINT, handle_sigint);
     pthread_t server_thread;
 
     setup_gpio();

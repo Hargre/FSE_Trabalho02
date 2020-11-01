@@ -25,6 +25,10 @@ void setup_gpio() {
     init_out_devices();
 }
 
+void close_gpio() {
+    bcm2835_close();
+}
+
 int read_device(int device) {
     return bcm2835_gpio_lev(device);
 }

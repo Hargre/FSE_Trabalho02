@@ -23,5 +23,6 @@ int read_device(int device);
 void toggle_device(int device);
 void set_device(int device);
 void unset_device(int device);
+void close_gpio();
 
 #endif
