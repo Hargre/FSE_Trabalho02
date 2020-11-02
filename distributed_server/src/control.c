@@ -7,7 +7,7 @@
 
 int commands_table[7] = {(int)NULL, LAMP01, LAMP02, LAMP03, LAMP04, AIR01, AIR02};
 
-const char* process_command(int command, struct HouseState *state) {
+char* process_command(int command, struct HouseState *state) {
     if (command <= TOGGLE_COMMANDS) {
         toggle_device(commands_table[command]);
         get_air_lamps_state(state);
