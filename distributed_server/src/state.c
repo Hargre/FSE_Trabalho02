@@ -85,8 +85,9 @@ char *state_to_string(struct HouseState *state) {
         state->temperature, state->humidity,
         state->lamp01, state->lamp02, state->lamp03, state->lamp04,
         state->air01, state->air02,
-        state->presence01, state->presence02,
-        state->open01, state->open02, state->open03, state->open04, state->open05, state->open06
+        state->presence01.state, state->presence02.state,
+        state->open01.state, state->open02.state, state->open03.state, 
+        state->open04.state, state->open05.state, state->open06.state
     );
 
     return message;

@@ -21,6 +21,11 @@ def main():
     while option != 0:
         if option == 7:
             refresh_menu(state)
+        if option == 8:
+            print("Digite a temperatura de referência:")
+            state.ref_temperature = float(input())
+            refresh_menu(state)
+            option = int(input())
         else:
             send_message(option)
         option = int(input())

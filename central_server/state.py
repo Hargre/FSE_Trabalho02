@@ -24,7 +24,7 @@ class HouseState:
             \nAres-Condicionados:\n\tQuarto 01: %d\n\tQuarto 02: %d\
             \nPresença em Cômodos:\n\tSala: %d\n\tCozinha: %d\
             \nPortas e Janelas Abertas:\n\tPorta Cozinha: %d\n\tJanela Cozinha: %d\
-            \nPorta Sala: %d\n\tJanela Sala: %d\
+            \n\tPorta Sala: %d\n\tJanela Sala: %d\
             \n\tJanela Quarto 01: %d\n\tJanela Quarto 02: %d\n" % (
                 self.temperature, self.humidity,
                 self.lamp01, self.lamp02, self.lamp03, self.lamp04,

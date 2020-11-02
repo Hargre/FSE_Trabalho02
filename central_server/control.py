@@ -14,10 +14,12 @@ def get_state(state):
     while 1:
         response = send_message(20, True)
         state.set_state(response)
-        # refresh_menu(state)
+        regulate_temperature(state)
         time.sleep(1)
 
 def regulate_temperature(state):
+    if not state.temperature or not state.ref_temperature:
+        return
     if state.temperature < state.ref_temperature - 5 or state.temperature > state.ref_temperature + 5:
         send_message(10)
     else:
