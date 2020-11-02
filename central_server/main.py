@@ -1,5 +1,5 @@
 from server import run_server
-from server import send_message
+from control import send_message
 from interface import refresh_menu
 from state import HouseState
 import threading
