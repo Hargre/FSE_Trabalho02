@@ -1,6 +1,11 @@
 #ifndef STATE_H
 #define STATE_H
 
+typedef struct {
+    unsigned char state;
+    unsigned char alarm_activated;
+} GuardedDevice;
+
 struct HouseState {
     float temperature;
     float humidity;
@@ -10,14 +15,14 @@ struct HouseState {
     unsigned char lamp04;
     unsigned char air01;
     unsigned char air02;
-    unsigned char presence01;
-    unsigned char presence02;
-    unsigned char open01;
-    unsigned char open02;
-    unsigned char open03;
-    unsigned char open04;
-    unsigned char open05;
-    unsigned char open06;
+    GuardedDevice presence01;
+    GuardedDevice presence02;
+    GuardedDevice open01;
+    GuardedDevice open02;
+    GuardedDevice open03;
+    GuardedDevice open04;
+    GuardedDevice open05;
+    GuardedDevice open06;
 };
 
 struct HouseState init_state();
@@ -26,6 +31,8 @@ int get_presence_sensors_state(struct HouseState *state);
 int get_open_sensors_state(struct HouseState *state);
 void get_climate_state(struct HouseState *state);
 void get_air_lamps_state(struct HouseState *state);
+void init_guarded_device_state(GuardedDevice *device, int device_flag);
+int get_guarded_device_state(GuardedDevice *device, int device_flag);
 
 char *state_to_string(struct HouseState *state);
 
