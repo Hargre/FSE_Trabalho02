@@ -6,6 +6,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <signal.h>
+#include <stdlib.h>
 
 void cleanup() {
     close_gpio();
@@ -26,10 +27,6 @@ int main() {
 
     pthread_create(&server_thread, NULL, run_server, (void *)&state);
     start_polling(&state);
-    for (int i = 0; i < 10; i++) {
-        printf("%s\n", state_to_string(&state));
-        sleep(1);
-    }
     int a = pthread_join(server_thread, NULL);
     return 0;
 }

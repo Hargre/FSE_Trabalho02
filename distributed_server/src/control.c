@@ -1,10 +1,11 @@
 #include "control.h"
+#include "server.h"
 #include "gpio.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
 
-int commands_table[7] = {NULL, LAMP01, LAMP02, LAMP03, LAMP04, AIR01, AIR02};
+int commands_table[7] = {(int)NULL, LAMP01, LAMP02, LAMP03, LAMP04, AIR01, AIR02};
 
 const char* process_command(int command, struct HouseState *state) {
     if (command <= TOGGLE_COMMANDS) {
@@ -44,7 +45,10 @@ void start_polling(struct HouseState *state) {
 void *poll_presence_sensors(void *state) {
     while (1) {
         int alarm_trigger = get_presence_sensors_state((struct HouseState *)state);
-        usleep(100000);
+        if (alarm_trigger) {
+            push_alarm();
+        }
+        usleep(100000); 
     }
     return NULL;
 }
@@ -52,6 +56,9 @@ void *poll_presence_sensors(void *state) {
 void *poll_open_sensors(void *state) {
     while (1) {
         int alarm_trigger = get_open_sensors_state((struct HouseState *)state);
+        if (alarm_trigger) {
+            push_alarm();
+        }
         usleep(100000);
     }
     return NULL;
@@ -82,5 +89,6 @@ void *climate_readings(void *state) {
 }
 
 void push_alarm() {
-    
+    pthread_t alarm_message;
+    pthread_create(&alarm_message, NULL, send_alarm, NULL);
 }

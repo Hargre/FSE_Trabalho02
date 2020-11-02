@@ -2,6 +2,7 @@ class HouseState:
     def __init__(self):
         self.temperature = 0
         self.humidity = 0
+        self.ref_temperature = 0
         self.lamp01 = 0
         self.lamp02 = 0
         self.lamp03 = 0

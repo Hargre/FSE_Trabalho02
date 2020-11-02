@@ -1,3 +1,4 @@
+from server import run_server
 from server import send_message
 from interface import refresh_menu
 from state import HouseState
@@ -11,7 +12,9 @@ def main():
     refresh_menu(state)
 
     state_updates = threading.Thread(target=get_state, args=(state,), daemon=True)
+    server = threading.Thread(target=run_server, daemon=True)
     state_updates.start()
+    server.start()
 
     option = int(input())
 

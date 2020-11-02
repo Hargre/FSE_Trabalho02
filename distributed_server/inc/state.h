@@ -27,6 +27,6 @@ int get_open_sensors_state(struct HouseState *state);
 void get_climate_state(struct HouseState *state);
 void get_air_lamps_state(struct HouseState *state);
 
-const char *state_to_string(struct HouseState *state);
+char *state_to_string(struct HouseState *state);
 
 #endif

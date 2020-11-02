@@ -9,3 +9,13 @@ def get_state(state):
         state.set_state(response)
         refresh_menu(state)
         time.sleep(1)
+
+def regulate_temperature(state):
+    if state.temperature < state.ref_temperature - 5 or state.temperature > state.ref_temperature + 5:
+        send_message(10)
+    else:
+        send_message(11)
+
+
+def trigger_alarm():
+    print("ALARME!!!!!!!!")

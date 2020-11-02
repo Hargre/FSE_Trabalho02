@@ -16,7 +16,6 @@
 void *run_server(void *state) {
     int serverSocket;
     struct sockaddr_in serverAddr;
-    unsigned short serverPort;
     
     serverSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
@@ -52,7 +51,7 @@ void handle_request(int serverSocket, struct HouseState *state) {
 
 
     while (receivedLen > 0) {
-        const char *response = process_command(buff[0], state);
+        char *response = process_command(buff[0], state);
         if (response != NULL) {
             send(clientSocket, response, strlen(response), 0);
         }
@@ -62,6 +61,20 @@ void handle_request(int serverSocket, struct HouseState *state) {
     close(clientSocket);
 }
 
-void *send_message() {
+void *send_alarm() {
+    int clientSocket;
+    struct sockaddr_in serverAddr;
+
+    clientSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+    memset(&serverAddr, 0, sizeof(serverAddr));
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_addr.s_addr = inet_addr(CENTRAL_SERVER_HOST);
+    serverAddr.sin_port = htons(CENTRAL_SERVER_PORT);
+
+    connect(clientSocket, (struct sockaddr *)&serverAddr, sizeof(serverAddr));
+    send(clientSocket, "ALARM", 6, 0);
+
+    close(clientSocket);
+
     return NULL;
 }

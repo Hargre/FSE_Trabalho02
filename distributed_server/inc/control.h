@@ -6,10 +6,6 @@
 
 #define TOGGLE_COMMANDS 6
 
-#define TOGGLE_LAMP01 1
-#define TOGGLE_LAMP02 2
-#define TOGGLE_LAMP03 3
-#define TOGGLE_LAMP04 4
 #define TEMP_CONTROL_ON 10
 #define TEMP_CONTROL_OFF 11
 #define SEND_STATE 20

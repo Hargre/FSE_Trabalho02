@@ -56,7 +56,7 @@ int get_open_sensors_state(struct HouseState *state) {
     return (state->open01 || state->open02 || state->open03 || state->open04 || state->open05 || state->open06);
 }
 
-const char *state_to_string(struct HouseState *state) {
+char *state_to_string(struct HouseState *state) {
 
     char *message = malloc(68 * sizeof(char));
     sprintf(
