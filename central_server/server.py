@@ -25,5 +25,6 @@ def handle_request(server):
     conn, client_addr = server.accept()
     data = conn.recv(1024)
     while data:
+        print(data)
         process_command(data.decode("utf-8"))
         data = conn.recv(1024)

@@ -46,7 +46,8 @@ void *poll_presence_sensors(void *state) {
     while (1) {
         int alarm_trigger = get_presence_sensors_state((struct HouseState *)state);
         if (alarm_trigger) {
-            push_alarm();
+            pthread_t alarm_message;
+            pthread_create(&alarm_message, NULL, send_alarm, NULL);
         }
         usleep(100000); 
     }
@@ -57,7 +58,8 @@ void *poll_open_sensors(void *state) {
     while (1) {
         int alarm_trigger = get_open_sensors_state((struct HouseState *)state);
         if (alarm_trigger) {
-            push_alarm();
+            pthread_t alarm_message;
+            pthread_create(&alarm_message, NULL, send_alarm, NULL);
         }
         usleep(100000);
     }
@@ -86,9 +88,4 @@ void *climate_readings(void *state) {
         pthread_mutex_unlock(&climate_readings_mutex);
     }
     return NULL;
-}
-
-void push_alarm() {
-    pthread_t alarm_message;
-    pthread_create(&alarm_message, NULL, send_alarm, NULL);
 }

@@ -19,7 +19,10 @@ def main():
     option = int(input())
 
     while option != 0:
-        send_message(option)
+        if option == 7:
+            refresh_menu(state)
+        else:
+            send_message(option)
         option = int(input())
     
 

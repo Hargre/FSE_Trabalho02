@@ -20,6 +20,5 @@ void *poll_presence_sensors(void *state);
 void *poll_open_sensors(void *state);
 void climate_readings_trigger(int sigalarm);
 void *climate_readings(void *state);
-void push_alarm();
 
 #endif
