@@ -35,7 +35,7 @@ def input_loop(state):
             state.ref_temperature = float(input())
             refresh_menu(state)
         elif option == MenuOptions.TOGGLE_ALARM.value:
-            toggle_alarm(state)
+            result = toggle_alarm(state)
             if not result:
                 print("Não foi possível ativar o alarme. Verifique portas, janelas e cômodos e tente novamente.")
         else:
