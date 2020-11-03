@@ -1,4 +1,3 @@
-from interface import refresh_menu
 import time
 import socket
 
@@ -27,7 +26,7 @@ def regulate_temperature(state):
 
 
 def toggle_alarm(state):
-    if state.any_presence_openings_active():
+    if not state.alarm_on and state.any_presence_openings_active():
         return False
     state.toggle_alarm()
     return True

@@ -26,5 +26,5 @@ def handle_request(server, state):
     data = conn.recv(1024)
     while data:
         print(data.decode("utf-8"))
-        process_command(data.decode("utf-8"))
+        process_command(data.decode("utf-8"), state)
         data = conn.recv(1024)

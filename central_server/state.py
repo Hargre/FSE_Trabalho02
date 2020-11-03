@@ -30,7 +30,7 @@ class HouseState:
             \n\tPorta Sala: %d\n\tJanela Sala: %d\
             \n\tJanela Quarto 01: %d\n\tJanela Quarto 02: %d\n" % (
                 "Ativado" if self.alarm_on else "Desativado",
-                self.temperature, self.humidity, self.ref_temperature
+                self.temperature, self.humidity, self.ref_temperature,
                 self.lamp01, self.lamp02, self.lamp03, self.lamp04,
                 self.air01, self.air02,
                 self.presence01, self.presence02,
