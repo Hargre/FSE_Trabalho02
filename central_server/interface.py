@@ -1,6 +1,8 @@
 import os
 from enum import Enum
 from control import toggle_alarm
+from control import send_message
+from logger import Logger
 
 class MenuOptions(Enum):
     REFRESH_INTERFACE = 7
@@ -41,4 +43,6 @@ def input_loop(state):
         else:
             send_message(option)
 
+        logger = Logger.get_instance()
+        logger.log_command(option)
         option = int(input())

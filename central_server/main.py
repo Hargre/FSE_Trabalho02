@@ -6,9 +6,10 @@ from state import HouseState
 import threading
 import os
 from control import get_state
+from logger import Logger
 
 def main():
-
+    logger = Logger.get_instance()
     state = HouseState()
     refresh_menu(state)
 
