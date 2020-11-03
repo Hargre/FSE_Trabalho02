@@ -1,6 +1,7 @@
 from server import run_server
 from control import send_message
 from interface import refresh_menu
+from interface import input_loop
 from state import HouseState
 import threading
 import os
@@ -12,24 +13,12 @@ def main():
     refresh_menu(state)
 
     state_updates = threading.Thread(target=get_state, args=(state,), daemon=True)
-    server = threading.Thread(target=run_server, daemon=True)
+    server = threading.Thread(target=run_server, args=(state,), daemon=True)
     state_updates.start()
     server.start()
 
-    option = int(input())
+    input_loop(state)
 
-    while option != 0:
-        if option == 7:
-            refresh_menu(state)
-        if option == 8:
-            print("Digite a temperatura de referência:")
-            state.ref_temperature = float(input())
-            refresh_menu(state)
-            option = int(input())
-        else:
-            send_message(option)
-        option = int(input())
-    
 
 if __name__ == '__main__':
     main()

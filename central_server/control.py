@@ -26,5 +26,12 @@ def regulate_temperature(state):
         send_message(11)
 
 
-def trigger_alarm():
-    print("ALARME!!!!!!!!")
+def toggle_alarm(state):
+    if state.any_presence_openings_active():
+        return False
+    state.toggle_alarm()
+    return True
+
+def trigger_alarm(state):
+    if state.alarm_on:
+        print("ALARME!!!!!!!!")

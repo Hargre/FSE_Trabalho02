@@ -1,5 +1,5 @@
 from control import trigger_alarm
 
-def process_command(command):
+def process_command(command, state):
     if command == "ALARM":
-        trigger_alarm()
+        trigger_alarm(state)
