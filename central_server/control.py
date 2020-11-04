@@ -1,5 +1,6 @@
 import time
 import socket
+from logger import Logger
 
 def send_message(message, need_anwser=False):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
@@ -34,3 +35,5 @@ def toggle_alarm(state):
 def trigger_alarm(state):
     if state.alarm_on:
         print("ALARME!!!!!!!!")
+        logger = Logger.get_instance()
+        logger.log_alarm()
