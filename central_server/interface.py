@@ -46,3 +46,4 @@ def input_loop(state):
         logger = Logger.get_instance()
         logger.log_command(option)
         option = int(input())
+        refresh_menu(state)

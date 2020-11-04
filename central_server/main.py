@@ -11,12 +11,12 @@ from logger import Logger
 def main():
     logger = Logger.get_instance()
     state = HouseState()
-    refresh_menu(state)
 
     state_updates = threading.Thread(target=get_state, args=(state,), daemon=True)
     server = threading.Thread(target=run_server, args=(state,), daemon=True)
     state_updates.start()
     server.start()
+    refresh_menu(state)
 
     input_loop(state)
 
