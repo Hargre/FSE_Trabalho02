@@ -26,11 +26,11 @@ class Logger:
         return cls._instance
     
     def log_command(self,command):
-        log_data = threading.Thread(target=self.log, args=(self, 'Usuário selecionou: %s' % self.commands[command],))
+        log_data = threading.Thread(target=self.log, args=('Usuário selecionou: %s' % self.commands[command],))
         log_data.start()
     
     def log_alarm(self):
-        log_data = threading.Thread(target=self.log, args=(self, 'Alarme disparou',))
+        log_data = threading.Thread(target=self.log, args=('Alarme disparou',))
         log_data.start()
 
     def log(self, content):
