@@ -35,8 +35,8 @@ def toggle_alarm(state):
 
 def trigger_alarm(state):
     if state.alarm_on:
-        alarm_playback = subprocess.Popen(['omxplayer', 'media/alarm.mp3'], stdin=subprocess.PIPE, close_fds=True)
+        alarm_playback = subprocess.Popen(['omxplayer', 'media/alarm.mp3'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, close_fds=True)
         time.sleep(5)
-        alarm_playback.stdin.write('q')
+        alarm_playback.stdin.write(b'q')
         logger = Logger.get_instance()
         logger.log_alarm()

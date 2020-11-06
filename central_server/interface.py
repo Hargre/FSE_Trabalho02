@@ -38,6 +38,7 @@ def input_loop(state):
             refresh_menu(state)
         elif option == MenuOptions.TOGGLE_ALARM.value:
             result = toggle_alarm(state)
+            refresh_menu(state)
             if not result:
                 print("Não foi possível ativar o alarme. Verifique portas, janelas e cômodos e tente novamente.")
         else:
