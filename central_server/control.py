@@ -1,5 +1,6 @@
 import time
 import socket
+import subprocess
 from logger import Logger
 
 def send_message(message, need_anwser=False):
@@ -34,6 +35,8 @@ def toggle_alarm(state):
 
 def trigger_alarm(state):
     if state.alarm_on:
-        print("ALARME!!!!!!!!")
+        alarm_playback = subprocess.Popen(['omxplayer', 'media/alarm.mp3'], stdin=subprocess.PIPE, close_fds=True)
+        time.sleep(5)
+        alarm_playback.stdin.write('q')
         logger = Logger.get_instance()
         logger.log_alarm()
