@@ -71,8 +71,9 @@ void *send_alarm() {
     serverAddr.sin_addr.s_addr = inet_addr(CENTRAL_SERVER_HOST);
     serverAddr.sin_port = htons(CENTRAL_SERVER_PORT);
 
-    connect(clientSocket, (struct sockaddr *)&serverAddr, sizeof(serverAddr));
-    send(clientSocket, "ALARM", 6, 0);
+    if (connect(clientSocket, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) != -1) {
+        send(clientSocket, "ALARM", 6, 0);
+    }
 
     close(clientSocket);
 
