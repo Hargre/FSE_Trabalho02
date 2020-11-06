@@ -26,6 +26,9 @@ void setup_gpio() {
 }
 
 void close_gpio() {
+    for (int i = 0; i < 6; i++) {
+        unset_device(out_devices[i]);
+    }
     bcm2835_close();
 }
 
