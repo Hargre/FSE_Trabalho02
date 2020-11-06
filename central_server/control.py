@@ -37,6 +37,7 @@ def toggle_alarm(state):
 def trigger_alarm(state):
     if state.alarm_on:
         alarm_playback = threading.Thread(target=play_alarm)
+        alarm_playback.start()
         logger = Logger.get_instance()
         logger.log_alarm()
 

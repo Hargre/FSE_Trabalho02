@@ -22,7 +22,7 @@ class HouseState:
 
     def __str__(self):
         return "Alarme: %s\
-            \nTemperatura: %.2f Umidade %.2f (Temperatura de referência: %.2f)\
+            \nTemperatura: %.2f Umidade %.2f (Temperatura de referência: %s)\
             \nLâmpadas:\n\tCozinha: %d\n\tSala: %d\n\tQuarto 01: %d\n\tQuarto 02: %d\
             \nAres-Condicionados:\n\tQuarto 01: %d\n\tQuarto 02: %d\
             \nPresença em Cômodos:\n\tSala: %d\n\tCozinha: %d\
@@ -30,7 +30,7 @@ class HouseState:
             \n\tPorta Sala: %d\n\tJanela Sala: %d\
             \n\tJanela Quarto 01: %d\n\tJanela Quarto 02: %d\n" % (
                 "Ativado" if self.alarm_on else "Desativado",
-                self.temperature, self.humidity, self.ref_temperature,
+                self.temperature, self.humidity, "%.2f" % self.ref_temperature if self.ref_temperature else "-",
                 self.lamp01, self.lamp02, self.lamp03, self.lamp04,
                 self.air01, self.air02,
                 self.presence01, self.presence02,
