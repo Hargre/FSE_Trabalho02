@@ -27,6 +27,6 @@ int main() {
 
     pthread_create(&server_thread, NULL, run_server, (void *)&state);
     start_polling(&state);
-    int a = pthread_join(server_thread, NULL);
+    pthread_join(server_thread, NULL);
     return 0;
 }

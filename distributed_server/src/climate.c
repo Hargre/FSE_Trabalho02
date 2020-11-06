@@ -126,4 +126,5 @@ int read_sensor(struct bme280_dev *dev, struct bme280_data *data) {
         fprintf(stderr, "Erro ao ler dados do sensor. Código %+d\n", result);
         return -1;
     }
+    return BME280_OK;
 }
