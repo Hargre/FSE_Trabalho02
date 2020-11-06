@@ -2,6 +2,7 @@ import time
 import socket
 import subprocess
 from logger import Logger
+import threading
 
 def send_message(message, need_anwser=False):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
@@ -35,8 +36,12 @@ def toggle_alarm(state):
 
 def trigger_alarm(state):
     if state.alarm_on:
-        alarm_playback = subprocess.Popen(['omxplayer', 'media/alarm.mp3'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, close_fds=True)
-        time.sleep(5)
-        alarm_playback.stdin.write(b'q')
+        alarm_playback = threading.Thread(target=play_alarm)
         logger = Logger.get_instance()
         logger.log_alarm()
+
+
+def play_alarm():
+    alarm_playback = subprocess.Popen(['omxplayer', 'media/alarm.mp3'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, close_fds=True)
+    time.sleep(5)
+    alarm_playback.stdin.write(b'q')
