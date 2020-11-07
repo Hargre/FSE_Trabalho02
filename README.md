@@ -1,5 +1,5 @@
-# FSE - Trabalho 01
-Primeiro Trabalho da Disciplina de Fundamentos de Sistemas Embarcados.
+# FSE - Trabalho 02
+Segundo Trabalho da Disciplina de Fundamentos de Sistemas Embarcados.
 
 Aluno: Felipe de Oliveira Hargreaves - 15/0009313
 
